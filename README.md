@@ -20,6 +20,8 @@ This study answers:
 
 ### 2.1 Beam Geometry and Material
 
+![](BDSFEA0.jpeg)
+
 * **Beam type:** Cantilever beam (fixed at one end, free at the other)
 * **Material:** 7079 Aluminum
 * **Young’s Modulus (E):**
@@ -99,8 +101,12 @@ y_B = [ -200 * (4 * 12)^3 ] / [ 3 * (10.4 × 10^6) * (0.5369) ]
 
 ### 3.4 Analytical Result
 
+![BDSFEA1](BDSFEA1.png)
+
+![BDSFEA2](BDSFEA2.png)
+
 ```text
-Deflection at point B ≈ -1.94 in
+Deflection at point B ≈ -1.94 inch
 ```
 
 The negative sign indicates **downward deflection**, consistent with the direction of the applied loads.
