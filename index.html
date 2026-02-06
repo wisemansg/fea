@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beam Deflection Study – SOLIDWORKS FEA</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.65;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      color: #222;
+      background: #fdfdfd;
+    }
+    h1 {
+      text-align: center;
+      font-size: 3.8rem;
+      margin: 0.4em 0 0.8em;
+      color: #1a1a1a;
+    }
+    h2 {
+      color: #0d47a1;
+      border-bottom: 2px solid #bbdefb;
+      padding-bottom: 0.4em;
+      margin-top: 2.2em;
+    }
+    h3 {
+      color: #1565c0;
+      margin-top: 1.8em;
+    }
+    .highlight {
+      background: #e3f2fd;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    pre, code {
+      font-family: 'Consolas', 'Monaco', monospace;
+      background: #f5f5f5;
+      padding: 0.25em 0.5em;
+      border-radius: 5px;
+      font-size: 0.96em;
+    }
+    pre {
+      padding: 1.1em;
+      overflow-x: auto;
+      border: 1px solid #e0e0e0;
+      margin: 1.3em 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 500px;
+      margin: 1.5em 0;
+    }
+    th, td {
+      border: 1px solid #d0d0d0;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background: #e3f2fd;
+      font-weight: 600;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1.6em auto;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .center {
+      text-align: center;
+    }
+    .result-box {
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      padding: 1.2em 1.5em;
+      margin: 1.5em 0;
+      border-radius: 4px;
+      font-size: 1.1em;
+    }
+    .note {
+      color: #555;
+      font-size: 0.95em;
+      font-style: italic;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 2.5em 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1 align="center" style="font-size:100px;">🔧 SOLIDWORKS</h1>
+
+<div class="center">
+  <h1>Beam Deflection Study - FEA</h1>
+  
+</div>
+
+<hr>
+
+<h2>1. Introduction and Objective</h2>
+
+<p>
+  This project investigates the vertical deflection behavior of a cantilever beam subjected to two concentrated loads using both 
+  <strong>classical beam theory (hand calculations)</strong> and <strong>Finite Element Analysis (FEA)</strong> in 
+  <strong>SOLIDWORKS Simulation</strong>.
+</p>
+<p>
+  The primary objective is to validate the analytical solution using superposition against numerical simulation results and to 
+  demonstrate how FEA can be used as a reliable engineering tool for predicting structural response.
+</p>
+
+<p><strong>This study answers:</strong></p>
+<ul>
+  <li>What was analyzed</li>
+  <li>Why the analysis matters</li>
+  <li>What the results mean</li>
+  <li>How confident we are in the conclusions</li>
+</ul>
+
+<hr>
+
+<h2>2. Problem Description</h2>
+
+<h3>2.1 Beam Geometry and Material</h3>
+
+<img src="BDSFEA0.jpeg" alt="Cantilever beam geometry and cross-section">
+
+<ul>
+  <li><strong>Beam type:</strong> Cantilever beam (fixed at one end, free at the other)</li>
+  <li><strong>Material:</strong> 7079 Aluminum</li>
+  <li><strong>Young’s Modulus (E):</strong> <code>10.4 × 10⁶ psi</code></li>
+  <li><strong>Outside Diameter:</strong> 2.0 in</li>
+  <li><strong>Inside Diameter:</strong> 1.5 in</li>
+  <li><strong>Area Moment of Inertia (I):</strong> <code>0.5369 in⁴</code></li>
+</ul>
+
+<p class="note">The beam is modeled as a hollow circular tube — commonly used in lightweight structural applications due to its high stiffness-to-weight ratio.</p>
+
+<h3>2.2 Loading and Boundary Conditions</h3>
+
+<ul>
+  <li>The beam is <strong>fully fixed at point O</strong> (no translation or rotation)</li>
+  <li>Two vertical downward point loads:
+    <ul>
+      <li>Load at A = <strong>300 lbf</strong> (downward)</li>
+      <li>Load at B = <strong>200 lbf</strong> (downward)</li>
+    </ul>
+  </li>
+  <li>Locations:
+    <ul>
+      <li>O → A = 2 ft = 24 in</li>
+      <li>O → B = 4 ft = 48 in</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2>3. Analytical (Hand) Calculation</h2>
+
+<h3>3.1 Methodology</h3>
+<p>Based on <strong>Euler–Bernoulli beam theory</strong> and the <strong>principle of superposition</strong>.</p>
+
+<h3>3.2 Governing Equation</h3>
+<pre>
+y_B = - (F_B * l³) / (3 * E * I)
+    + (F_A * a²) / (6 * E * I) * (a - 3 * l)
+</pre>
+
+<h3>3.4 Analytical Result</h3>
+
+<img src="BDSFEA1.png" alt="Hand calculation - part 1">
+<img src="BDSFEA2.png" alt="Hand calculation - part 2">
+
+<div class="result-box">
+  <strong>Deflection at point B ≈ -1.94 inch</strong><br>
+  <span class="note">(Negative sign indicates downward deflection)</span>
+</div>
+
+<hr>
+
+<h2>4. Finite Element Analysis (FEA)</h2>
+
+<h3>4.1 Software and Tools Used</h3>
+<pre>
+CAD & Simulation Software : SOLIDWORKS Simulation
+Study Type                : Static Structural Analysis
+Element Type              : Beam Elements
+Solver                    : Linear Static Solver
+</pre>
+
+<h3>4.2 FEA Model Setup</h3>
+<ul>
+  <li>Geometry identical to analytical model</li>
+  <li>Material: 7079 Aluminum</li>
+  <li>Fixed constraint at point O</li>
+  <li>Point loads: 300 lbf at A, 200 lbf at B</li>
+  <li>Adequate mesh refinement for convergence</li>
+</ul>
+
+<hr>
+
+<h2>5. Results and Interpretation</h2>
+
+<h3>5.1 Displacement Results</h3>
+<ul>
+  <li>Maximum displacement ≈ <strong>1.94 in</strong> (at point B)</li>
+  <li>Minimum displacement ≈ <strong>0 in</strong> (fixed end)</li>
+</ul>
+
+<h3>5.2 Comparison – Analytical vs FEA</h3>
+
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Deflection at B (in)</th>
+  </tr>
+  <tr>
+    <td>Hand Calculation</td>
+    <td>1.94</td>
+  </tr>
+  <tr>
+    <td>FEA (SOLIDWORKS)</td>
+    <td>1.94</td>
+  </tr>
+</table>
+
+<div class="result-box">
+  <strong>Near-perfect agreement</strong> — validates both the analytical formulation and the FEA setup.
+</div>
+
+<hr>
+
+<h2>6. Significance of the Study</h2>
+<p>Classical theory and modern simulation <strong>complement each other</strong>:</p>
+<ul>
+  <li>Hand calculations → physical insight & quick validation</li>
+  <li>FEA → visualization, scalability, complex geometry handling</li>
+</ul>
+
+<hr>
+
+<h2>10. Conclusion</h2>
+
+<p>
+  This beam deflection study successfully validates analytical predictions using Finite Element Analysis. 
+  The excellent agreement between theory and simulation confirms the accuracy of the model and highlights 
+  the power of combining first-principles engineering with modern computational tools.
+</p>
+
+<p><strong>A solid foundation for future structural design and optimization work.</strong></p>
+
+<hr>
+
+<p align="center" style="color:#777; margin-top:3em;">
+  End of Project Documentation
+</p>
+
+</body>
+</html>
 
