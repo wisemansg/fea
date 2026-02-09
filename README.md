@@ -232,4 +232,166 @@ This beam deflection study successfully validates analytical predictions using F
 
 ---
 
-**End of README Documentation**
+# Tuning Fork – Natural Frequency (Modal) Analysis
+
+**SOLIDWORKS Simulation – Frequency Study**  
+**Study name:** Tuning Fork  
+**Analysis type:** Frequency (Modal analysis)
+
+---
+
+## 📖 Project Overview
+
+This project performs a **modal analysis** (natural frequency study) on a tuning fork geometry created in SOLIDWORKS. The simulation calculates the first 10 natural frequencies, corresponding mode shapes, and mass participation factors to understand the dynamic vibration behavior of the tuning fork. The model represents a classic tuning fork with a spherical handle and two prongs, commonly used in acoustics, physics education, and medical diagnostics.
+
+---
+
+## 🎯 Objectives
+
+1. Determine the first 10 natural frequencies of the tuning fork  
+2. Identify the dominant vibration modes (bending, torsion, longitudinal, etc.)  
+3. Evaluate mass participation in X, Y, Z directions to understand which directions are most excitable  
+4. Verify the characteristic closely spaced bending modes typical of tuning forks  
+5. Provide reliable simulation data for educational purposes or design verification  
+6. Create a foundation for future studies (harmonic response, forced vibration, material changes)
+
+---
+
+## 🛠️ Software & Study Settings
+
+- **Software**: SOLIDWORKS Simulation  
+- **Study name**: Tuning Fork  
+- **Analysis type**: Frequency  
+- **Mesh type**: Solid Mesh  
+- **Number of frequencies**: 10  
+- **Solver**: FFEPlus  
+- **Soft Spring**: Off  
+- **Decouple mixed free body modes**: Off  
+- **Incompatible bonding options**: Automatic  
+- **Thermal option**: Include temperature loads  
+- **Zero strain temperature**: 298 K  
+- **Fluid pressure effects**: Off  
+
+**Units**  
+- System: SI (MKS)  
+- Length / Displacement: mm  
+- Temperature: Kelvin  
+- Stress / Pressure: N/m²  
+
+---
+
+## 🔧 Mesh Information
+
+| Property                              | Value              |
+|---------------------------------------|--------------------|
+| Mesher used                           | Blended curvature-based |
+| Jacobian points                       | 16 points          |
+| Max element size                      | 8.94536 mm         |
+| Min element size                      | 2.98176 mm         |
+| **Total nodes**                       | **23 344**         |
+| **Total elements**                    | **14 258**         |
+| Maximum aspect ratio                  | 5.1756             |
+| % elements with aspect ratio < 3      | **100%**           |
+| % elements with aspect ratio > 10     | 0%                 |
+| % distorted elements                  | 0%                 |
+| Meshing time                          | 13 seconds         |
+
+**Mesh quality**: Excellent – high-quality mesh with very good element shapes.
+
+---
+
+## 📊 Results – Natural Frequencies
+
+| Mode | Frequency (rad/s) | Frequency (Hz) | Period (s)    |
+|------|-------------------|----------------|---------------|
+| 1    | 110.21            | **17.54**      | 0.057011      |
+| 2    | 110.67            | **17.613**     | 0.056777      |
+| 3    | 283.24            | 45.079         | 0.022183      |
+| 4    | 292.96            | 46.626         | 0.021447      |
+| 5    | 839.6             | 133.63         | 0.0074835     |
+| 6    | 841.53            | 133.93         | 0.0074664     |
+| 7    | 1 483.7           | 236.13         | 0.0042349     |
+| 8    | 1 829.3           | 291.14         | 0.0034348     |
+| 9    | 2 411.4           | 383.78         | 0.0026056     |
+| 10   | 2 420.6           | 385.25         | 0.0025957     |
+
+**Key observation**: Modes 1 and 2 are extremely close (17.54 Hz and 17.613 Hz) — this is the classic **near-degenerate pair** of symmetric and antisymmetric bending modes that produce the characteristic pure tone of a tuning fork.
+
+---
+
+## 📈 Mass Participation (Normalized)
+
+| Mode | Frequency (Hz) | X direction   | Y direction   | Z direction   |
+|------|----------------|---------------|---------------|---------------|
+| 1    | 17.54          | ~0            | ~0            | **0.51775**   |
+| 2    | 17.613         | ~0            | **0.51655**   | ~0            |
+| 5    | 133.63         | ~0            | ~0            | 0.12476       |
+| 6    | 133.93         | ~0            | 0.11775       | ~0            |
+| 9    | 383.78         | ~0            | 0.035581      | ~0            |
+| 10   | 385.25         | ~0            | ~0            | 0.027777      |
+| **Sum** | —           | **0.00439**   | **0.66995**   | **0.67043**   |
+
+**Interpretation**:
+- Almost all effective mass participates in **Y** and **Z** directions  
+- Negligible participation in **X** direction → symmetry of the fork  
+- Modes 1 and 2 together capture ~103% of the effective mass in the primary vibration plane (typical for bending-dominated structures)
+
+![TF0](TF0.png)
+![TF1](TF1.png)
+![TF2](TF2.png)
+![TF3](TF3.png)
+![TF4](TF4.png)
+![TF5](TF5.png)
+
+---
+
+## 🧠 Discussion – Main Engineering Insights
+
+- **Fundamental modes (17.54 Hz & 17.613 Hz)**  
+  These are the primary bending modes of the two prongs moving in phase and out of phase. The very small frequency difference (~0.4%) is expected and desirable, it produces a clean, sustained tone with minimal beating.
+
+- **Low fundamental frequency**  
+  ~17.5 Hz is **much lower** than a standard musical tuning fork (usually 256 Hz, 440 Hz, 512 Hz, etc.). This geometry represents a **large demonstration / physics lab tuning fork** rather than a musical or medical one.
+
+- **Higher modes (133–385 Hz)**  
+  Represent higher-order bending, torsional, and longitudinal vibrations — usually not excited during normal use.
+
+- **Mass participation**  
+  Strong participation in two perpendicular directions confirms that the fork vibrates mainly in the plane of the prongs, exactly as expected.
+
+---
+
+## ✅ Conclusion
+
+The modal analysis correctly captures the characteristic closely spaced bending modes of a tuning fork at approximately **17.5 Hz**. The results are consistent with classical vibration theory for symmetric fork structures.
+
+The simulation methodology is reliable and can be reused for:
+- Musical tuning forks (440 Hz, 512 Hz, etc.)
+- Medical tuning forks (128 Hz, 256 Hz)
+- Custom resonator designs
+
+---
+
+## 🏭 Real-World Applications
+
+- **Music & Acoustics** — designing tuning forks, tuning bars, vibraphones, glockenspiels  
+- **Medical Diagnostics** — neurological examination forks (128 Hz, 256 Hz)  
+- **Physics Education** — classroom demonstrations of vibration modes and resonance  
+- **Precision Instruments** — tuning fork sensors, frequency standards, quartz tuning forks in watches  
+- **MEMS Devices** — tuning fork gyroscopes, resonators in accelerometers and timing devices  
+- **Vibration Testing** — reference standards for calibrating vibration equipment
+
+---
+
+## 🚀 Future Work Ideas
+
+- Scale the model to achieve standard musical frequencies (440 Hz, 523 Hz, etc.)  
+- Change material (steel → aluminum → quartz) and compare frequency shift  
+- Add damping to estimate sound decay time  
+- Perform harmonic response analysis with impact loading  
+- Include temperature effects on frequency (thermal expansion)  
+- Compare simulation with experimental tap test results
+
+---
+
+
