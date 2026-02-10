@@ -343,6 +343,10 @@ This project performs a **modal analysis** (natural frequency study) on a tuning
 ![TF4](TF4.png)
 ![TF5](TF5.png)
 
+## 📄 Download Simulation Report
+
+[⬇️ Download PDF](Simulation%20of%20Tuning%20Fork.pdf)
+
 ---
 
 ## 🧠 Discussion – Main Engineering Insights
