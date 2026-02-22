@@ -20,7 +20,7 @@ This study answers:
 
 ### 2.1 Beam Geometry and Material
 
-![](BDSFEA0.jpeg)
+![](./feaassets/BDSFEA0.jpeg)
 
 * **Beam type:** Cantilever beam (fixed at one end, free at the other)
 * **Material:** 7079 Aluminum
@@ -101,9 +101,9 @@ y_B = [ -200 * (4 * 12)^3 ] / [ 3 * (10.4 × 10^6) * (0.5369) ]
 
 ### 3.4 Analytical Result
 
-![BDSFEA1](BDSFEA1.png)
+![BDSFEA1](./feaassets/BDSFEA1.png)
 
-![BDSFEA2](BDSFEA2.png)
+![BDSFEA2](./feaassets/BDSFEA2.png)
 
 ```text
 Deflection at point B ≈ -1.94 inch
@@ -336,12 +336,12 @@ This project performs a **modal analysis** (natural frequency study) on a tuning
 - Negligible participation in **X** direction → symmetry of the fork  
 - Modes 1 and 2 together capture ~103% of the effective mass in the primary vibration plane (typical for bending-dominated structures)
 
-![TF0](TF0.png)
-![TF1](TF1.png)
-![TF2](TF2.png)
-![TF3](TF3.png)
-![TF4](TF4.png)
-![TF5](TF5.png)
+![TF0](./feaassets/TF0.png)
+![TF1](./feaassets/TF1.png)
+![TF2](./feaassets/TF2.png)
+![TF3](./feaassets/TF3.png)
+![TF4](./feaassets/TF4.png)
+![TF5](./feaassets/TF5.png)
 
 ## 📄 Download Simulation Report
 
